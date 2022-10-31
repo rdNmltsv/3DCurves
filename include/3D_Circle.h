@@ -15,9 +15,9 @@ public:
 	}
 
 public:
-	Point3D	GetPoint(Scalar angle) const noexcept override;
+	Point3D	GetPoint(Scalar parameter) const noexcept override;
 	
-	// Vector3D GetFirstDerivative();
+	Vector3D GetFirstDerivative(Scalar parameter) const noexcept override;
 
 private:
 	Point3D _center;

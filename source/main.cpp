@@ -8,7 +8,6 @@
 #include <random>
 #include <typeinfo>
 #include <algorithm>
-#include <iterator>
 
 class PRNG {
 public:
@@ -66,11 +65,16 @@ int main() {
 		}
 	}	
 	
-	// print coordinates of points and derivatives of all curves in the container at t=PI/4.
+	// print coordinates of points and derivatives of all curves in the container at parameter = PI/4
+	std::cout << std::fixed << std::setprecision(4);
+	std::cout << "<------------|---------------------------------|--------------------------------->\n"
+				 "|   Curve    |             Point               |         First derivative        |\n"
+				 "<------------|---------------------------------|--------------------------------->\n";
 	for (constexpr Scalar parameter = std::numbers::pi / 4; const auto& curve : curves) {
-		std::cout << "Point (" << typeid(*curve).name() << "): " << curve->GetPoint(parameter) << '\n';
-		// std::cout << "First derivative: " << curve->GetFirstDerivative(paremater) << '\n';
+		std::cout << std::left << "| " << std::setw(10) <<  typeid(*curve).name() << " | ";
+		std::cout << curve->GetPoint(parameter) << " | " << curve->GetFirstDerivative(parameter) << " |\n";
 	}
+	std::cout << "<------------|---------------------------------|--------------------------------->\n";
 	
 	// populate a second container that would contain only circles from the first container. 
 	// make sure the second container shares (i.e. not clones) circles of the first one, e.g. via pointers
@@ -88,7 +92,7 @@ int main() {
 			return lhs->getRadius() < rhs->getRadius();
 		}
 	);
-	std::cout << "Sorted circles in the ascending order of circles radii: ";
+	std::cout << "Sorted circles in the ascending order of circles radii:\n";
 	for(const auto& circle : circles) {
 		std::cout << circle->getRadius() << ' ';
 	}
@@ -100,11 +104,6 @@ int main() {
 			return lhs + rhs->getRadius();
 		}
 	);
-	
-	// delete allocated objects, circles pointers in vector circles are invalid until now
-	for(const auto& curve : curves) {
-		delete curve;
-	}
 	
 	std::cout << std::endl;
 	return 0;
