@@ -11,7 +11,7 @@ second container shares (i.e. not clones) circles of the first one via pointers.
 # How to build
 1. git clone or download source code from this repo.
 2. run CMake GUI (or [download](https://cmake.org/download/) at least version 3.24.0. if dont have one).
-3. select directory, containing CMakeLists.txt folders.
+3. select directory, containing CMakeLists.txt.
 4. select directory, where CMake should build binaries - consider create a folder **build/** near CMakeLists.txt.
 5. click *Configure* to start project configurating.
 6. when asked, specify generator you want to use - originally used generator was MSYS Makefiles.
